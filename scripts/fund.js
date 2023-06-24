@@ -7,15 +7,19 @@ async function main() {
     const fundMe = await ethers.getContractAt("FundMe", fundMeAddress, deployer)
     console.log("FundMe contract ...")
 
-    const transactionResponse = await fundMe.fund({value: ethers.parseEther("0.1")})
+    const transactionResponse = await fundMe.fund({
+        value: ethers.parseEther("0.1"),
+    })
     await transactionResponse.wait(1)
 
     console.log("Funded!")
 }
 
-main().then(() => {
-    process.exit(0)
-}).catch((error) => {
-    console.error(error)
-    process.exit(1)
-}) 
+main()
+    .then(() => {
+        process.exit(0)
+    })
+    .catch((error) => {
+        console.error(error)
+        process.exit(1)
+    })
